@@ -5,3 +5,4 @@ This repository contains examples for work with Infrastructure as Code (IaC) app
 - [Part 3](https://github.com/groovy-sky/azure/tree/master/iac-02)  - about building a Docker image (using Github Actions), which have Ansible playbooks for ARM template deployment
 - [Part 4](https://github.com/groovy-sky/azure/tree/master/iac-03)  - about running a Docker container (using Azure DevOps), which uses Ansible playbooks for ARM template deployment
 - [Part 5](https://github.com/groovy-sky/azure/tree/master/iac-04)  - about triggering a DevOps pipeline, which on a Docker container runs Ansible playbooks for ARM template deployment, with Power Automate help
+testing push
