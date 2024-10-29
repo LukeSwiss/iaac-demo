@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:18.04
 ARG START_DIR=/opt/automation
 
 COPY ${GITHUB_WORKSPACE} ${START_DIR}
