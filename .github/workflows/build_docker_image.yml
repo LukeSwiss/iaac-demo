@@ -27,8 +27,26 @@ jobs:
     - name: Docker login
       run: docker login -u ${{ secrets.DockerHubUser }} -p ${{ secrets.DockerHubToken }}
 
+    - name: Install Python 3 and pip
+      run: |
+          sudo apt-get update
+          sudo apt-get install -y python3 python3-pip
+          python3 -m pip install --upgrade pip
+    - name: Install Python packages
+      run: |
+          pip3 install ansible[azure] docker
+
     # Build and publish Docker image
     - name: Docker build and push
       run: docker build -f ${GITHUB_WORKSPACE}/docker/Dockerfile -t ${{ secrets.DockerHubUser }}/${IMAGE_NAME}:latest . && docker push ${{ secrets.DockerHubUser }}/${IMAGE_NAME}:latest
       env:
-        IMAGE_NAME: iac-demo
+       IMAGE_NAME: mysql  # Set IMAGE_NAME to the desired name
+
+
+   # Pull and publish the official MySQL image
+    - name: Pull MySQL image
+      run: docker pull mysql:latest
+
+    - name: Tag and push MySQL image
+      run: docker tag mysql:latest ${{ secrets.DockerHubUser }}/mysql:latest && docker push ${{ secrets.DockerHubUser }}/mysql:latest
+

@@ -3,12 +3,29 @@ ARG START_DIR=/opt/automation
 
 COPY ${GITHUB_WORKSPACE} ${START_DIR}
 
-RUN apt-get update \
- && apt-get install -y software-properties-common python-pip curl nodejs \
- && apt-add-repository -y --update ppa:ansible/ansible \
- && apt-get install -y ansible\
- && pip install ansible[azure] \
- && pip install docker
+# Update package list
+RUN apt-get update
+
+# Install essential packages
+RUN apt-get install -y software-properties-common python3-pip curl nodejs
+ENV LANG C.UTF-8
+ENV LC_ALL C.UTF-8
+
+# Add the Ansible repository
+RUN apt-add-repository -y --update ppa:ansible/ansible
+
+# Install Ansible
+RUN apt-get install -y ansible
+
+# Upgrade pip to the latest version
+RUN pip3 install --upgrade pip
+
+# Install Ansible Azure collection with pip
+RUN pip3 install ansible[azure]
+
+# Install Docker SDK for Python
+RUN pip3 install docker
+
 
 LABEL "com.azure.dev.pipelines.agent.handler.node.path"="/usr/bin/node"
 
