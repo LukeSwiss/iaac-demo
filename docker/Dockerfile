@@ -3,7 +3,7 @@ ARG START_DIR=/opt/automation
 
 COPY ${GITHUB_WORKSPACE} ${START_DIR}
 
-# Update package lists
+# Update package list
 RUN apt-get update
 
 # Install essential packages
