@@ -8,6 +8,8 @@ RUN apt-get update
 
 # Install essential packages
 RUN apt-get install -y software-properties-common python3-pip curl nodejs
+ENV LANG C.UTF-8
+ENV LC_ALL C.UTF-8
 
 # Add the Ansible repository
 RUN apt-add-repository -y --update ppa:ansible/ansible
