@@ -7,7 +7,7 @@ COPY ${GITHUB_WORKSPACE} ${START_DIR}
 RUN apt-get update
 
 # Install essential packages
-RUN apt-get install -y software-properties-common python-pip curl nodejs
+RUN apt-get install -y software-properties-common python3-pip curl nodejs
 
 # Add the Ansible repository
 RUN apt-add-repository -y --update ppa:ansible/ansible
@@ -15,11 +15,14 @@ RUN apt-add-repository -y --update ppa:ansible/ansible
 # Install Ansible
 RUN apt-get install -y ansible
 
+# Upgrade pip to the latest version
+RUN pip3 install --upgrade pip
+
 # Install Ansible Azure collection with pip
-RUN pip install ansible[azure]
+RUN pip3 install ansible[azure]
 
 # Install Docker SDK for Python
-RUN pip install docker
+RUN pip3 install docker
 
 
 LABEL "com.azure.dev.pipelines.agent.handler.node.path"="/usr/bin/node"
